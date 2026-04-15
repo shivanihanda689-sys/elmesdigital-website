@@ -14,14 +14,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 
+
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const REVEAL = { duration: 0.5, ease: EASE };
+
 
 type Feature = {
   icon: React.ComponentType<{ className?: string }>;
   title: string;
   description: string;
 };
+
 
 type StorySection = {
   eyebrow: string;
@@ -32,6 +35,7 @@ type StorySection = {
   detail: string;
 };
 
+
 type PortfolioItem = {
   name: string;
   url: string;
@@ -40,11 +44,13 @@ type PortfolioItem = {
   metrics: string[];
 };
 
+
 type Testimonial = {
   quote: string;
   name: string;
   role: string;
 };
+
 
 type ProcessStep = {
   step: string;
@@ -53,6 +59,7 @@ type ProcessStep = {
   desc: string;
   icon: React.ComponentType<{ className?: string }>;
 };
+
 
 const features: Feature[] = [
   {
@@ -93,12 +100,14 @@ const features: Feature[] = [
   },
 ];
 
+
 const stats = [
   { value: "3.4x", label: "More qualified leads" },
   { value: "41%", label: "Lower admin time" },
   { value: "+28%", label: "Higher booking conversion" },
   { value: "12 wks", label: "To launch core systems" },
 ];
+
 
 const storySections: StorySection[] = [
   {
@@ -129,6 +138,7 @@ const storySections: StorySection[] = [
     detail: "Less admin work, faster response times, and better consistency.",
   },
 ];
+
 
 const portfolioItems: PortfolioItem[] = [
   {
@@ -181,6 +191,7 @@ const portfolioItems: PortfolioItem[] = [
   },
 ];
 
+
 const testimonials: Testimonial[] = [
   {
     quote:
@@ -190,7 +201,7 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "What stood out was the combination of strategy and execution. We were not handed a plan deck — we got real systems that worked.",
+      "What stood out was the combination of strategy and execution. We were not handed a plan deck - we got real systems that worked.",
     name: "Jordan Lee",
     role: "Founder, Local Service Business",
   },
@@ -202,6 +213,7 @@ const testimonials: Testimonial[] = [
   },
 ];
 
+
 const processSteps: ProcessStep[] = [
   {
     step: "01",
@@ -212,14 +224,14 @@ const processSteps: ProcessStep[] = [
   },
   {
     step: "02",
-    phase: "Weeks 2–3",
+    phase: "Weeks 2-3",
     title: "Design & Experience",
     desc: "We shape the website, funnel, and customer journey with strong branding and conversion-first thinking.",
     icon: Play,
   },
   {
     step: "03",
-    phase: "Weeks 3–6",
+    phase: "Weeks 3-6",
     title: "Build & Launch",
     desc: "We develop, QA, and launch your system with speed, reliability, and performance in mind.",
     icon: Zap,
@@ -232,6 +244,7 @@ const processSteps: ProcessStep[] = [
     icon: BarChart3,
   },
 ];
+
 
 function SectionHeading({
   eyebrow,
@@ -255,25 +268,85 @@ function SectionHeading({
   );
 }
 
-function LogoMark() {
+
+function LogoMark({ dark = false, compact = false }: { dark?: boolean; compact?: boolean }) {
+  const textColor = dark ? "#FFFFFF" : "#111827";
+  const subTextColor = dark ? "rgba(255,255,255,0.88)" : "#111827";
+  const gradientId = dark ? "elmes-gradient-dark" : "elmes-gradient-light";
+
+  if (compact) {
+    return (
+      <motion.div
+        initial={{ scale: 0.92, opacity: 0, y: 4 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        transition={REVEAL}
+        whileHover={{ y: -1, scale: 1.02 }}
+        className="flex items-center justify-center"
+        aria-label="Elmes Digital icon"
+        title="Elmes Digital icon"
+      >
+        <svg viewBox="0 0 180 180" className="h-12 w-12" role="img" aria-hidden="true">
+          <defs>
+            <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#C56BE7" />
+              <stop offset="100%" stopColor="#B45FD9" />
+            </linearGradient>
+          </defs>
+          <polygon points="42,24 130,24 152,56 66,56" fill={`url(#${gradientId})`} />
+          <path d="M28 72 H96 L120 108 H64 V122 H132 L154 156 H28 Z" fill={`url(#${gradientId})`} />
+        </svg>
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div
       initial={{ scale: 0.92, opacity: 0, y: 4 }}
       animate={{ scale: 1, opacity: 1, y: 0 }}
       transition={REVEAL}
       whileHover={{ y: -1, scale: 1.02 }}
-      className="group relative flex h-11 w-11 items-center justify-center rounded-[18px] bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 shadow-[0_16px_40px_-20px_rgba(124,58,237,0.65)]"
+      className="flex items-center justify-center"
+      aria-label="Elmes Digital logo"
+      title={dark ? "Elmes Digital dark logo" : "Elmes Digital logo"}
     >
-      <div className="absolute inset-0 rounded-[18px] bg-violet-400/30 blur-md" />
-      <div className="absolute inset-px rounded-[17px] bg-gradient-to-br from-white/24 via-white/10 to-transparent" />
-      <div className="absolute inset-0 rounded-[18px] ring-1 ring-white/20 ring-inset" />
-      <div className="relative flex items-center justify-center">
-        <div className="h-5 w-5 rounded-[6px] bg-white/90" />
-        <div className="absolute h-2.5 w-2.5 rounded-[4px] bg-gradient-to-br from-violet-500 to-fuchsia-400" />
-      </div>
+      <svg viewBox="0 0 420 220" className="h-16 w-auto" role="img" aria-hidden="true">
+        <defs>
+          <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#C56BE7" />
+            <stop offset="100%" stopColor="#B45FD9" />
+          </linearGradient>
+        </defs>
+
+        <polygon points="42,18 132,18 152,46 62,46" fill={`url(#${gradientId})`} />
+        <path d="M28 64 H94 L118 98 H61 V110 H132 L152 140 H28 Z" fill={`url(#${gradientId})`} />
+
+        <text
+          x="36"
+          y="182"
+          fill={textColor}
+          fontSize="30"
+          fontWeight="800"
+          letterSpacing="8"
+          fontFamily="Inter, Arial, sans-serif"
+        >
+          ELMES
+        </text>
+        <text
+          x="41"
+          y="212"
+          fill={subTextColor}
+          fontSize="14"
+          fontWeight="700"
+          letterSpacing="12"
+          fontFamily="Inter, Arial, sans-serif"
+        >
+          DIGITAL
+        </text>
+      </svg>
     </motion.div>
   );
 }
+
 
 function StoryVisual({ index }: { index: number }) {
   if (index === 0) {
@@ -325,7 +398,11 @@ function StoryVisual({ index }: { index: number }) {
               </div>
             </div>
             <div className="grid grid-cols-3 gap-2">
-              {["Trust", "Offer", "Speed"].map((label) => (
+              {[
+                "Trust",
+                "Offer",
+                "Speed",
+              ].map((label) => (
                 <div key={label} className="rounded-xl border border-violet-200 bg-white p-2">
                   <div className="mb-2 h-3 w-10 rounded bg-violet-100" />
                   <div className="h-8 rounded bg-slate-100" />
@@ -355,7 +432,11 @@ function StoryVisual({ index }: { index: number }) {
               Why it converts
             </div>
             <div className="space-y-2">
-              {["Clear offer above the fold", "Strong proof near CTA", "Fewer drop-off points"].map((item) => (
+              {[
+                "Clear offer above the fold",
+                "Strong proof near CTA",
+                "Fewer drop-off points",
+              ].map((item) => (
                 <div key={item} className="flex items-start gap-2 text-xs text-slate-600">
                   <span className="mt-1 h-1.5 w-1.5 rounded-full bg-violet-500" />
                   <span>{item}</span>
@@ -404,6 +485,7 @@ function StoryVisual({ index }: { index: number }) {
   );
 }
 
+
 function BrandBackdrop() {
   return (
     <>
@@ -417,6 +499,7 @@ function BrandBackdrop() {
     </>
   );
 }
+
 
 function PortfolioCard({ site, index }: { site: PortfolioItem; index: number }) {
   const [imageFailed, setImageFailed] = useState(false);
@@ -491,6 +574,7 @@ function PortfolioCard({ site, index }: { site: PortfolioItem; index: number }) 
   );
 }
 
+
 export default function App() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
@@ -501,15 +585,15 @@ export default function App() {
       <header className="sticky top-0 z-30 border-b border-violet-200/70 bg-white/55 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <div className="group flex items-center gap-3">
-            <LogoMark />
+            <LogoMark compact />
             <div>
               <div className="text-lg font-semibold tracking-tight text-slate-950">Elmes Digital</div>
-              <div className="text-sm text-slate-500">Growth systems that convert and scale</div>
             </div>
           </div>
 
           <nav className="hidden items-center gap-8 md:flex">
             {[
+              ["Our Story", "#our-story"],
               ["How it works", "#story"],
               ["Services", "#features"],
               ["Wineries", "#wineries"],
@@ -541,6 +625,63 @@ export default function App() {
       </header>
 
       <main>
+        {/* Our Story Section */}
+        <section id="our-story" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Who We Are"
+            title="Built at the intersection of technology, design, and strategy"
+            description="Elmes Digital started with a simple belief: great products are not just built with code, they are built with understanding."
+          />
+
+          <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+            <Card className="rounded-[32px] border border-violet-200 bg-white/92 shadow-sm backdrop-blur-sm">
+              <CardContent className="p-8 sm:p-10">
+                <div className="space-y-6 text-slate-600">
+                  <p className="text-lg leading-8 text-slate-700">
+                    After years of working inside companies like Google, Amazon, and BlackBerry, we saw the same pattern over and over again: the best products were not necessarily the most complex - they were the ones that solved real problems, simply and beautifully.
+                  </p>
+                  <p className="leading-8">That insight is what shaped Elmes Digital.</p>
+                  <p className="leading-8">
+                    Our founder did not come from just one discipline, but from the intersection of many. With a background in Digital Enterprise Management from University of Toronto, design training from Sheridan College, and an MBA in Marketing from Wilfrid Laurier University, she learned early on that building something great requires more than technical skill. It requires understanding people, design, and how businesses actually grow.
+                  </p>
+                  <p className="leading-8">
+                    Elmes Digital was built on that idea - to bring together technology, design, and strategy in a way that feels seamless.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-[32px] border border-violet-200 bg-white/92 shadow-xl shadow-violet-200/50 backdrop-blur-sm">
+              <CardContent className="p-8 sm:p-10">
+                <div className="inline-flex rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-sm font-medium text-violet-700">
+                  Our approach
+                </div>
+                <h3 className="mt-5 text-2xl font-semibold tracking-tight text-slate-950">
+                  We are partners in what you are building.
+                </h3>
+                <div className="mt-6 space-y-5 text-slate-600">
+                  <p className="leading-8">
+                    Today, we work with businesses at every stage - from early ideas to growing companies - helping them turn concepts into real, scalable digital products. Whether it is a mobile app, a web platform, or a full digital ecosystem, we approach every project the same way: by asking the right questions first, and building with intention.
+                  </p>
+                  <p className="leading-8">
+                    We do not see ourselves as just developers or marketers.
+                    <br />
+                    We see ourselves as partners in what you are building.
+                  </p>
+                </div>
+
+                <div className="mt-8 rounded-[28px] bg-slate-950 p-6 text-white shadow-[0_20px_50px_-30px_rgba(15,23,42,0.95)]">
+                  <div className="text-sm text-white/70">What drives us</div>
+                  <div className="mt-2 text-2xl font-semibold tracking-tight">
+                    It is not just about launching something - it is about building something that lasts.
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Hero Section */}
         <section className="relative overflow-hidden">
           <div className="mx-auto grid max-w-7xl gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:px-8 lg:py-28">
             <motion.div initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={REVEAL} className="max-w-3xl">
@@ -620,7 +761,7 @@ export default function App() {
                       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                         <div>
                           <div className="text-sm text-violet-700">This is the Elmes Digital model</div>
-                          <div className="mt-1 text-lg font-semibold tracking-tight text-slate-950">Strategy, execution, websites, and automation — connected.</div>
+                          <div className="mt-1 text-lg font-semibold tracking-tight text-slate-950">Strategy, execution, websites, and automation - connected.</div>
                         </div>
                         <a href="#story" className="inline-flex items-center rounded-full border border-violet-200 bg-white px-4 py-2 text-sm font-medium text-slate-950 shadow-sm transition hover:bg-violet-100">
                           View how it works
@@ -635,6 +776,7 @@ export default function App() {
           </div>
         </section>
 
+        {/* Story Section */}
         <section id="story" className="border-y border-violet-200 bg-white/55">
           <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
             <SectionHeading
@@ -669,6 +811,7 @@ export default function App() {
           </div>
         </section>
 
+        {/* Who We Work With Section */}
         <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Who we work with"
@@ -689,6 +832,7 @@ export default function App() {
           </div>
         </section>
 
+        {/* Wineries Section */}
         <section id="wineries" className="bg-violet-50/75 py-24">
           <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
             <div>
@@ -732,19 +876,21 @@ export default function App() {
           </div>
         </section>
 
+        {/* Portfolio Section */}
         <section id="portfolio" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Portfolio"
             title="Selected work"
             description="A refined showcase of websites and digital products built to strengthen clarity, trust, and conversion."
           />
-          <div className="grid auto-rows-fr gap-6 md:grid-cols-2 xl:grid-cols-5">
+          <div className="grid auto-rows-fr gap-6 md:grid-cols-2 lg:grid-cols-3">
             {portfolioItems.map((site, index) => (
               <PortfolioCard key={site.name} site={site} index={index} />
             ))}
           </div>
         </section>
 
+        {/* Services Section */}
         <section id="features" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Services"
@@ -773,6 +919,7 @@ export default function App() {
           </div>
         </section>
 
+        {/* Results Section */}
         <section id="proof" className="border-y border-violet-200 bg-white/60">
           <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
             <SectionHeading
@@ -785,7 +932,7 @@ export default function App() {
                 <motion.div key={item.name} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.45, delay: index * 0.08, ease: EASE }}>
                   <Card className="h-full rounded-[28px] border border-violet-200 bg-white/92 shadow-sm hover:shadow-[0_22px_55px_-34px_rgba(124,58,237,0.34)] backdrop-blur-sm">
                     <CardContent className="flex h-full flex-col justify-between p-7">
-                      <p className="text-base leading-7 text-slate-600">“{item.quote}”</p>
+                      <p className="text-base leading-7 text-slate-600">&ldquo;{item.quote}&rdquo;</p>
                       <div className="mt-6 border-t border-violet-200 pt-5">
                         <div className="font-semibold text-slate-950">{item.name}</div>
                         <div className="text-sm text-slate-500">{item.role}</div>
@@ -798,11 +945,12 @@ export default function App() {
           </div>
         </section>
 
+        {/* Work With Us Section */}
         <section id="work-with-us" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Work With Us"
-            title="Let’s work together"
-            description="Tell us what you’re building, how soon you want to start, and what kind of support you need. We’ll use that to shape the right engagement."
+            title="Let us work together"
+            description="Tell us what you are building, how soon you want to start, and what kind of support you need. We will use that to shape the right engagement."
           />
           <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
             <Card className="rounded-[32px] border border-violet-200 bg-white/92 shadow-sm backdrop-blur-sm">
@@ -881,7 +1029,7 @@ export default function App() {
                     <div>
                       <div className="text-sm font-semibold uppercase tracking-[0.18em] text-violet-700">How soon do you want to start?</div>
                       <div className="mt-4 space-y-3">
-                        {["ASAP", "1–3 Months", "4–6 Months", "6+ Months"].map((item) => (
+                        {["ASAP", "1-3 Months", "4-6 Months", "6+ Months"].map((item) => (
                           <div key={item} className="rounded-2xl border border-violet-200 bg-white px-4 py-3 text-sm font-medium text-slate-700">{item}</div>
                         ))}
                       </div>
@@ -889,7 +1037,7 @@ export default function App() {
                     <div>
                       <div className="text-sm font-semibold uppercase tracking-[0.18em] text-violet-700">Budget range</div>
                       <div className="mt-4 space-y-3">
-                        {["Under $10K", "$10K–$25K", "$25K–$50K", "$50K+"].map((item) => (
+                        {["Under $10K", "$10K-$25K", "$25K-$50K", "$50K+"].map((item) => (
                           <div key={item} className="rounded-2xl border border-violet-200 bg-white px-4 py-3 text-sm font-medium text-slate-700">{item}</div>
                         ))}
                       </div>
@@ -917,6 +1065,7 @@ export default function App() {
           </div>
         </section>
 
+        {/* Contact Section */}
         <section id="contact" className="py-24">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <Card className="overflow-hidden rounded-[36px] border border-violet-200 bg-white/92 shadow-[0_30px_80px_-34px_rgba(124,58,237,0.32)] backdrop-blur-sm">
@@ -924,7 +1073,7 @@ export default function App() {
                 <div>
                   <div className="inline-flex rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-sm font-medium text-violet-700">Ready to grow</div>
                   <h3 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">Build your next growth system with Elmes Digital.</h3>
-                  <p className="mt-4 max-w-lg leading-7 text-slate-600">Let’s build the strategy, digital experience, and automation layer your business needs to generate more demand and operate more efficiently.</p>
+                  <p className="mt-4 max-w-lg leading-7 text-slate-600">Let us build the strategy, digital experience, and automation layer your business needs to generate more demand and operate more efficiently.</p>
                 </div>
                 <div className="rounded-[28px] border border-violet-200 bg-violet-50/90 p-5 shadow-sm">
                   <div className="text-sm font-medium text-slate-700">Start a conversation</div>
@@ -944,6 +1093,7 @@ export default function App() {
         </section>
       </main>
 
+      {/* Consultation Modal */}
       {isConsultationOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/35 p-4 backdrop-blur-md">
           <div className="absolute inset-0" onClick={() => setIsConsultationOpen(false)} />
@@ -953,7 +1103,7 @@ export default function App() {
                 <div>
                   <div className="inline-flex rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-sm font-medium text-violet-700">Book consultation</div>
                   <h3 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">Tell us about your project.</h3>
-                  <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600">Share a few details and we’ll use them to shape the right strategy, scope, and next steps.</p>
+                  <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600">Share a few details and we will use them to shape the right strategy, scope, and next steps.</p>
                 </div>
                 <button type="button" onClick={() => setIsConsultationOpen(false)} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-violet-200 bg-white text-slate-500 transition hover:bg-violet-50 hover:text-slate-900" aria-label="Close consultation form">
                   ×
