@@ -9,15 +9,13 @@
 - ✅ Stronger TypeScript — added shared types, typed nav items, typed form data, typed inline arrays
 - ✅ SEO — added Open Graph tags, Twitter card meta, canonical URL, JSON-LD structured data
 - ✅ Added Church League Fastball to portfolio
+- ✅ Portfolio screenshots — moved to static images in `public/portfolio/`, no more third-party dependency at runtime
 
 ## Remaining
 
 ### Wire up form submission
 The useFormState hook and ConsultationModal currently simulate a submit with a timeout.
 Wire up to an actual API endpoint or email service (e.g. Formspree, SendGrid, custom backend).
-
-### ~~Portfolio screenshots~~
-✅ Moved to static images in `public/portfolio/`. Church League Fastball uses thum.io due to Svelte page transition blocking microlink.
 
 ### Loading states
 Portfolio images have an `onError` fallback but no loading skeleton or spinner.
