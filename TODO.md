@@ -1,57 +1,29 @@
 # Codebase Improvements
 
-Tracked here until we can implement properly. These are known issues with the
-current state of the site, mostly stemming from the entire app living in a
-single ChatGPT-generated file.
+## Completed
 
-## High Priority
+- ✅ Break up App.tsx — extracted into types, data modules, reusable components, and section components
+- ✅ Form handling — added useFormState hook with state management, validation, and submit flow (needs real API endpoint)
+- ✅ Accessibility — added mobile nav drawer, modal keyboard trap + escape + focus management + ARIA roles, form labels, interactive selectable chips with aria-pressed/aria-checked
+- ✅ Font loading — added Inter via Google Fonts in index.html
+- ✅ Stronger TypeScript — added shared types, typed nav items, typed form data, typed inline arrays
+- ✅ SEO — added Open Graph tags, Twitter card meta, canonical URL, JSON-LD structured data
+- ✅ Added Church League Fastball to portfolio
 
-### Break up App.tsx
-The file is ~1100 lines with all data, components, and sections in one place.
-- Extract section components (Hero, OurStory, Wineries, Portfolio, etc.) into `src/components/sections/`
-- Move data arrays (features, stats, portfolioItems, testimonials, processSteps, storySections) into `src/data/` or `src/constants.ts`
-- Move reusable components (LogoMark, SectionHeading, StoryVisual, BrandBackdrop, PortfolioCard) into `src/components/`
+## Remaining
 
-### Form handling
-Contact forms and consultation modal have no logic behind them.
-- Add form state management
-- Add input validation
-- Wire up actual submission (API endpoint, email service, etc.)
-- Add success/error feedback to the user
+### Wire up form submission
+The useFormState hook and ConsultationModal currently simulate a submit with a timeout.
+Wire up to an actual API endpoint or email service (e.g. Formspree, SendGrid, custom backend).
 
-### Accessibility
-- Mobile menu button does nothing — needs a nav drawer
-- Consultation modal: no `role="dialog"`, no `aria-modal`, no keyboard trap, no escape-key close
-- Form inputs have no `<label>` elements
-- Option chips (budget, timeline, services) are plain `<div>`s — need to be interactive, keyboard-navigable, with proper ARIA roles
-
-## Medium Priority
-
-### Font loading
-LogoMark SVG references Inter but it's never loaded. Add a Google Fonts link or `@font-face` declaration so it doesn't silently fall back to Arial.
-
-### Tailwind class cleanup
-Repeated patterns (dark cards, pill badges, CTA buttons, gradient shadows) should be extracted into reusable component variants or `@apply` abstractions.
-
-### Stronger TypeScript usage
-- Nav items are untyped `string[][]` — should be typed objects
-- Inline tuple arrays (winery cards, "who we work with" cards) are untyped
-- Form data has no types at all
-
-### SEO
-For a marketing agency site, SEO is minimal:
-- No Open Graph / social meta tags
-- No structured data (JSON-LD)
-- No sitemap
-- No canonical URL
-
-## Low Priority
-
-### Portfolio screenshots
-Currently relies on `api.microlink.io` for live screenshots. This third-party service could rate-limit, go down, or change. Replace with static images we control.
+### ~~Portfolio screenshots~~
+✅ Moved to static images in `public/portfolio/`. Church League Fastball uses thum.io due to Svelte page transition blocking microlink.
 
 ### Loading states
-Portfolio images have an `onError` fallback but no loading skeleton or spinner. Rest of the app assumes perfect renders.
+Portfolio images have an `onError` fallback but no loading skeleton or spinner.
+
+### Tailwind class cleanup
+Repeated patterns (dark cards, pill badges, CTA buttons, gradient shadows) could be extracted into reusable component variants or `@apply` abstractions.
 
 ### Routing
-Everything is anchor links on a single massive page. If the site grows, consider React Router or similar.
+Everything is anchor links on a single page. If the site grows, consider React Router or similar.
