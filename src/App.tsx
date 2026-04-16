@@ -181,14 +181,6 @@ const portfolioItems: PortfolioItem[] = [
     service: "Hospitality website + booking presence",
     metrics: ["Hospitality-ready UX", "Improved guest discovery"],
   },
-  {
-    name: "Don-O-Ray Farms",
-    url: "https://www.donorayfarms.com/",
-    image:
-      "https://api.microlink.io/?url=https://www.donorayfarms.com/&screenshot=true&meta=false&embed=screenshot.url",
-    service: "Farm + e-commerce + local experience",
-    metrics: ["20+ years local presence", "Strong community engagement"],
-  },
 ];
 
 
