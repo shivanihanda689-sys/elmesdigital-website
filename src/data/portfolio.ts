@@ -37,6 +37,13 @@ export const portfolioItems: PortfolioItem[] = [
     metrics: ["Hospitality-ready UX", "Improved guest discovery"],
   },
   {
+    name: "Handa Eye Hospital",
+    url: "https://handaeye.com/",
+    image: "/portfolio/handa-eye.png",
+    service: "Specialty healthcare website",
+    metrics: ["5.0★ rating across 134+ reviews", "Trust-focused patient acquisition"],
+  },
+  {
     name: "Church League Fastball",
     url: "https://churchleaguefastball.ca/",
     image: "/portfolio/church-league-fastball.png",
